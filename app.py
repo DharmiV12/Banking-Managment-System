@@ -5,16 +5,18 @@ from ui_utils import show_api_error
 st.set_page_config("Bank App", layout="wide")
 st.title("🏦 Banking Management System")
 
-tabs = st.tabs([
-    "Create Account",
-    "Deposit",
-    "Withdraw",
-    "Balance",
-    "Account Details",
-    "Transactions",
-    "Update Account",
-    "Delete Account"
-])
+tabs = st.tabs(
+    [
+        "Create Account",
+        "Deposit",
+        "Withdraw",
+        "Balance",
+        "Account Details",
+        "Transactions",
+        "Update Account",
+        "Delete Account",
+    ]
+)
 
 
 with tabs[0]:
@@ -28,12 +30,9 @@ with tabs[0]:
         submit = st.form_submit_button("Create")
 
         if submit:
-            res = create_account({
-                "name": name,
-                "phone_no": phone,
-                "address": address,
-                "age": age
-            })
+            res = create_account(
+                {"name": name, "phone_no": phone, "address": address, "age": age}
+            )
 
             if res.ok:
                 st.success("Account created")
@@ -132,7 +131,7 @@ with tabs[6]:
         if phone.strip():
             params["phone_no"] = int(phone)
 
-        if address.strip(): 
+        if address.strip():
             params["address"] = address
 
         if age > 0:
